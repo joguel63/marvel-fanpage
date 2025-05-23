@@ -1,0 +1,49 @@
+.languageSelector {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  display: flex;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(30, 58, 95, 0.3));
+  backdrop-filter: blur(5px);
+  border-radius: 30px;
+  padding: 8px 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.languageButton {
+  border: none;
+  background: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.languageButton:hover {
+  color: white;
+  background: rgba(230, 36, 41, 0.3);
+}
+
+.active {
+  color: var(--primary-gold);
+  background: rgba(230, 36, 41, 0.2);
+}
+
+@media (max-width: 768px) {
+  .languageSelector {
+    top: 15px;
+    left: 15px;
+    padding: 6px 12px;
+  }
+
+  .languageButton {
+    font-size: 12px;
+    padding: 4px 6px;
+  }
+}

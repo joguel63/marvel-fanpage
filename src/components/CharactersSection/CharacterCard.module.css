@@ -1,0 +1,261 @@
+.characterCard {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  position: relative;
+  max-width: 350px;
+  min-width: 300px; /* Ancho mínimo para consistencia */
+  width: 100%;
+  height: 550px; /* Altura fija para todas las cards */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  display: flex;
+  flex-direction: column;
+  transform-origin: center; /* Centro para las transformaciones */
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  flex-shrink: 0; /* Evita que la imagen se reduzca */
+}
+
+.characterImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all var(--transition-normal);
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.imagePlaceholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, var(--dark-blue), var(--dark-gray));
+  z-index: 1;
+}
+
+.pulsatingCircle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-red), var(--primary-gold));
+  animation: pulse-scale 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-scale {
+  0%, 100% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.viewMoreButton {
+  background-color: var(--primary-red);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 auto; /* Centrado horizontal sin margin top */
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0; /* Evita que el botón se reduzca */
+}
+
+.viewMoreButton:hover {
+  transform: scale(1.1);
+  background-color: var(--primary-gold);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.viewMoreButton:active {
+  transform: scale(0.95);
+}
+
+.viewMoreButton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.5s, height 0.5s, opacity 0.5s;
+}
+
+.viewMoreButton:hover::before {
+  width: 120%;
+  height: 120%;
+  opacity: 0.5;
+}
+
+.viewMoreButton span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  pointer-events: none;
+}
+
+.cardContent {
+  padding: var(--spacing-lg);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.7);
+  flex: 1; /* Hace que el contenido ocupe el espacio restante */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribuye el contenido uniformemente */
+}
+
+.characterName {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-gold);
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+  flex-shrink: 0; /* Evita que el título se reduzca */
+}
+
+.characterDescription {
+  color: var(--white);
+  line-height: 1.5;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin: var(--spacing-sm) 0;
+  flex: 1; /* Permite que la descripción se expanda */
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Limita a 4 líneas máximo */
+  line-clamp: 4; /* Propiedad estándar para compatibilidad */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Contenedor para el texto de la card */
+.textContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.buttonContainer {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: var(--spacing-sm);
+}
+
+/* Efectos adicionales */
+.characterCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+  z-index: 1;
+}
+
+.characterCard:hover::before {
+  left: 100%;
+}
+
+@media (max-width: 768px) {
+  .characterCard {
+    max-width: 300px;
+    width: 100%;
+    height: 500px; /* Altura ajustada para móviles */
+  }
+  
+  .imageContainer {
+    height: 250px;
+  }
+  
+  .cardContent {
+    padding: var(--spacing-md);
+  }
+  
+  .characterName {
+    font-size: 1.3rem;
+  }
+  
+  .characterDescription {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 3; /* Menos líneas en móvil */
+    line-clamp: 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .characterCard {
+    max-width: 100%;
+    height: 450px; /* Altura ajustada para pantallas muy pequeñas */
+  }
+  
+  .imageContainer {
+    height: 220px;
+  }
+  
+  .characterName {
+    font-size: 1.2rem;
+  }
+  
+  .characterDescription {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 3; /* Máximo 3 líneas en pantallas pequeñas */
+    line-clamp: 3;
+  }
+}

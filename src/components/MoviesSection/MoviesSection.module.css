@@ -1,0 +1,85 @@
+.moviesSection {
+  padding: var(--spacing-xxl) 0;
+  background: linear-gradient(
+    180deg,
+    rgba(30, 58, 95, 0.9) 0%,
+    rgba(44, 44, 44, 0.9) 50%,
+    rgba(30, 58, 95, 0.9) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.moviesSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="rgba(230,36,41,0.05)" d="M0,100 Q50,50 100,100 T200,100 L200,200 L0,200 Z"/></svg>');
+  background-size: 400px 200px;
+  animation: wave 8s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-50px) translateY(-10px); }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--primary-gold);
+  margin-bottom: var(--spacing-xxl);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-red), var(--primary-gold));
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .moviesSection {
+    padding: var(--spacing-xl) 0;
+  }
+  
+  .title {
+    margin-bottom: var(--spacing-xl);
+  }
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.movie-title {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.movie-year {
+  text-align: center;
+  color: gray;
+}
